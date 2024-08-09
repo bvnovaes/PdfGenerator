@@ -7,7 +7,7 @@ namespace PdfGenerator.Core.Application.Validators
     {
         public GeneratePdfRequestValidator()
         {
-            RuleFor(x=>x.HtmlContent).NotNull().NotEmpty();
+            RuleFor(x=>x.HtmlContent).NotEmpty();
         }
     }
 }

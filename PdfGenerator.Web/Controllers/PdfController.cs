@@ -12,20 +12,19 @@ namespace PdfGenerator.Web.Controllers
 
         [HttpPost]
         [Route("gerar")]
-        public async Task<IActionResult> GeneratePdf([FromBody] GeneratePdfRequest request)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GeneratePdfAsync([FromBody] GeneratePdfRequest request)
         {
             try
             {
                 var pdfContent = await _generatePdfUseCase.Handle(request);
                 return File(pdfContent, "application/pdf", "document.pdf");
             }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(new { ex.Message });
-            }
             catch
             {
-                return StatusCode(500, new { Message = "Houve um erro ao gerar o arquivo PDF."});
+                return StatusCode(500, new { Message = "Houve um erro ao gerar o arquivo PDF." });
             }
         }
     }

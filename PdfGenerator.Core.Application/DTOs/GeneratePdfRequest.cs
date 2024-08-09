@@ -2,5 +2,5 @@
 
 public class GeneratePdfRequest
 {
-    public string HtmlContent { get; set; }
+    public string HtmlContent { get; set; } = string.Empty;
 }

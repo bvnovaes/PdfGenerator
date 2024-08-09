@@ -1,9 +1,11 @@
 ﻿using PdfGenerator.Core.Domain.Interfaces;
 using PuppeteerSharp;
 using PuppeteerSharp.Media;
+using System.Diagnostics.CodeAnalysis;
 
 namespace PdfGenerator.Infrastructure.Adapters;
 
+[ExcludeFromCodeCoverage]
 public class PuppeteerAdapter : IPdfGenerator
 {    
     public async Task<byte[]> GeneratePdfAsync(string htmlContent)

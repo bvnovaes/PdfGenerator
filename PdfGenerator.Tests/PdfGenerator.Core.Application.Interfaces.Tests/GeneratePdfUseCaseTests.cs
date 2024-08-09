@@ -18,19 +18,6 @@ public class GeneratePdfUseCaseTests
     }
 
     [Fact]
-    public async void Handle_ShouldTrowException_WhenHtmlContentIsEmpty()
-    {
-        //arrange
-        var request = new GeneratePdfRequest { HtmlContent = "" };
-
-        //act
-        Func<Task> act = async () => await _generatePdfUseCase.Handle(request);
-
-        //assert
-        await act.Should().ThrowAsync<ArgumentException>();
-    }
-
-    [Fact]
     public async Task Handle_ShouldReturnPdfContent_WhenHtmlContentIsValid()
     {
         //arrange

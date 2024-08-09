@@ -10,11 +10,6 @@ namespace PdfGenerator.Core.Application.UseCases
 
         public async Task<byte[]> Handle(GeneratePdfRequest request)
         {
-            if (string.IsNullOrWhiteSpace(request.HtmlContent))
-            {
-                throw new ArgumentException("Conteúdo do HTML não pode ser vazio.");
-            }
-
             return await _pdfGenerator.GeneratePdfAsync(request.HtmlContent);
         }
     }

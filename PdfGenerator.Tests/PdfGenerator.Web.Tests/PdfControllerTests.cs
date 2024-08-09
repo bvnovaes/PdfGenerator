@@ -1,25 +1,58 @@
-﻿namespace PdfGenerator.Tests.PdfGenerator.Web.Tests
+﻿using FluentAssertions;
+using Microsoft.AspNetCore.Mvc;
+using Moq;
+using PdfGenerator.Core.Application.DTOs;
+using PdfGenerator.Core.Application.Interfaces;
+using PdfGenerator.Web.Controllers;
+
+namespace PdfGenerator.Tests.PdfGenerator.Web.Tests
 {
     public class PdfControllerIntegrationTests
     {
-        [Fact]
-        public async Task GeneratePdf_ShouldReturnBadRequest_WhenHtmlContentIsInvalid()
+        private readonly Mock<IGeneratePdfUseCase> _generatePdfUseCaseMock;
+        private readonly PdfController _pdfController;
+
+        public PdfControllerIntegrationTests()
         {
-            //arrange
-
-            //act
-
-            //assert            
+            _generatePdfUseCaseMock = new Mock<IGeneratePdfUseCase>();
+            _pdfController = new PdfController(_generatePdfUseCaseMock.Object);
         }
 
         [Fact]
         public async Task GeneratePdf_ShouldReturnPdfFile_WhenHtmlContentIsValid()
         {
-            //arrange
+            // Arrange
+            var htmlContent = "<html><body>Conteúdo de teste</body></html>";
+            var pdfContent = new byte[] { 1, 2, 3 };
+            var request = new GeneratePdfRequest { HtmlContent = htmlContent };
 
-            //act
+            _generatePdfUseCaseMock.Setup(x => x.Handle(request)).ReturnsAsync(pdfContent);
 
-            //assert            
+            // Act
+            var result = await _pdfController.GeneratePdfAsync(request);
+
+            // Assert
+            result.Should().BeOfType<FileContentResult>();
+            result.As<FileContentResult>().ContentType.Should().Be("application/pdf");
+            result.As<FileContentResult>().FileContents.Should().BeEquivalentTo(pdfContent);
+        }
+        
+        [Fact]
+        public async Task GeneratePdf_ShouldReturnInternalServerError_WhenUseCaseThrowsException()
+        {
+            // Arrange
+            var htmlContent = "<html><body>Conteúdo de teste</body></html>";
+            var pdfContent = new byte[] { 1, 2, 3 };
+            var request = new GeneratePdfRequest { HtmlContent = htmlContent };
+
+            _generatePdfUseCaseMock.Setup(x => x.Handle(request)).ThrowsAsync(new Exception("Erro ao gerar o arquivo PDF"));
+
+            // Act
+            var result = await _pdfController.GeneratePdfAsync(request);
+
+            // Assert
+            result.Should().NotBeOfType<FileContentResult>();
+            result.As<ObjectResult>().StatusCode.Should().Be(500);
         }
     }
 }
