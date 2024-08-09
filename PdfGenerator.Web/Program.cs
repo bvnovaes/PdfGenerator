@@ -1,5 +1,6 @@
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.Extensions.Caching.Memory;
 using PdfGenerator.Core.Application.DTOs;
 using PdfGenerator.Core.Application.Interfaces;
 using PdfGenerator.Core.Application.UseCases;
@@ -17,6 +18,7 @@ builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddSingleton<IPdfGenerator, PuppeteerAdapter>();
 builder.Services.AddTransient<IValidator<GeneratePdfRequest>, GeneratePdfRequestValidator>();
 builder.Services.AddScoped<IGeneratePdfUseCase, GeneratePdfUseCase>();
+builder.Services.AddSingleton<IMemoryCache, MemoryCache>();
 
 var app = builder.Build();
 
