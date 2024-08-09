@@ -1,4 +1,6 @@
 using FluentValidation;
+using FluentValidation.AspNetCore;
+using PdfGenerator.Core.Application.DTOs;
 using PdfGenerator.Core.Application.Interfaces;
 using PdfGenerator.Core.Application.UseCases;
 using PdfGenerator.Core.Application.Validators;
@@ -10,9 +12,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddValidatorsFromAssemblyContaining<GeneratePdfRequestValidator>();
+builder.Services.AddFluentValidationAutoValidation();
 
 builder.Services.AddSingleton<IPdfGenerator, PuppeteerAdapter>();
+builder.Services.AddTransient<IValidator<GeneratePdfRequest>, GeneratePdfRequestValidator>();
 builder.Services.AddScoped<IGeneratePdfUseCase, GeneratePdfUseCase>();
 
 var app = builder.Build();
@@ -28,4 +31,3 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 app.Run();
-

@@ -29,8 +29,4 @@
     <ProjectReference Include="..\PdfGenerator.Web\PdfGenerator.Web.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="NewFolder\" />
-  </ItemGroup>
-
 </Project>

@@ -2,19 +2,19 @@
 using PdfGenerator.Core.Application.DTOs;
 using PdfGenerator.Core.Application.Validators;
 
-namespace PdfGenerator.Tests.PdfGenerator.Core.Application.DTOs.Tests
+namespace PdfGenerator.Tests.PdfGenerator.Core.Application.Validators.Tests
 {
-    public class GeneratePdfRequestTests
+    public class GeneratePdfRequestValidatorTest
     {
         private readonly GeneratePdfRequestValidator _validator;
 
-        public GeneratePdfRequestTests()
+        public GeneratePdfRequestValidatorTest()
         {
             _validator = new GeneratePdfRequestValidator();
         }
 
         [Fact]
-        public void Should_Have_Error_When_HtmlContent_Is_Empty()
+        public void Validate_GeneratePdfRequestWithEmptyHtmlContent_ShouldFail()
         {
             //arrange
             var request = new GeneratePdfRequest
@@ -30,7 +30,7 @@ namespace PdfGenerator.Tests.PdfGenerator.Core.Application.DTOs.Tests
         }
 
         [Fact]
-        public void Should_Not_Have_Error_When_HtmlContent_Is_Provided()
+        public void Validate_GeneratePdfRequestWithNonEmptyHtmlContent_ShouldPass()
         {
             //arrange
             var request = new GeneratePdfRequest

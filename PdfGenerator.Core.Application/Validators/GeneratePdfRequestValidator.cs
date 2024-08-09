@@ -7,7 +7,9 @@ namespace PdfGenerator.Core.Application.Validators
     {
         public GeneratePdfRequestValidator()
         {
-            RuleFor(x=>x.HtmlContent).NotEmpty();
+            RuleFor(x => x.HtmlContent)
+                .NotEmpty().WithMessage("HtmlContent não pode ser vazio.")
+                .NotNull().WithMessage("HtmlContent é obrigatório.");
         }
     }
 }
