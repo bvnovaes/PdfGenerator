@@ -1,9 +1,9 @@
 ﻿using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
+using PdfGenerator.Api.Controllers;
 using PdfGenerator.Core.Application.DTOs;
 using PdfGenerator.Core.Application.Interfaces;
-using PdfGenerator.Web.Controllers;
 
 namespace PdfGenerator.Tests.PdfGenerator.Web.Tests
 {
