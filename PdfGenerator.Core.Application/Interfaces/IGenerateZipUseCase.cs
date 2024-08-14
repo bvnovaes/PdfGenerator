@@ -2,7 +2,7 @@
 
 namespace PdfGenerator.Core.Application.Interfaces;
 
-public interface IGeneratePdfUseCase
+public interface IGenerateZipUseCase
 {
-    Task<byte[]> Handle(GeneratePdfRequest request);
+    Task<byte[]> Handle(GenerateZipRequest request);
 }

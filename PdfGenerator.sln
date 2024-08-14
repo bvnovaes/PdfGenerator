@@ -9,9 +9,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PdfGenerator.Core.Applicati
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PdfGenerator.Infrastructure", "PdfGenerator.Infrastructure\PdfGenerator.Infrastructure.csproj", "{92F7299B-D150-4E43-AA03-A24697321598}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PdfGenerator.Tests", "PdfGenerator.Tests\PdfGenerator.Tests.csproj", "{E9161D64-7354-4ADD-A7EE-E277BB337524}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PdfGenerator.Api", "PdfGenerator.Api\PdfGenerator.Api.csproj", "{B0CAA111-80C9-4AE9-9196-EC77B30BC1D7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5CE96D4B-69BF-4836-BDA7-AD5FCBE26A8F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{D370FCB3-D278-4AAF-9110-D51D94391152}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PdfGenerator.Api.Tests", "PdfGenerator.Api.Tests\PdfGenerator.Api.Tests.csproj", "{D4998A01-E8EA-4087-A643-160A8A231454}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PdfGenerator.Core.Application.Tests", "PdfGenerator.Core.Application.Tests\PdfGenerator.Core.Application.Tests.csproj", "{76183195-AC5A-4656-B6B7-657030CC8070}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,19 +37,31 @@ Global
 		{92F7299B-D150-4E43-AA03-A24697321598}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92F7299B-D150-4E43-AA03-A24697321598}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92F7299B-D150-4E43-AA03-A24697321598}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E9161D64-7354-4ADD-A7EE-E277BB337524}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E9161D64-7354-4ADD-A7EE-E277BB337524}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E9161D64-7354-4ADD-A7EE-E277BB337524}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E9161D64-7354-4ADD-A7EE-E277BB337524}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B0CAA111-80C9-4AE9-9196-EC77B30BC1D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B0CAA111-80C9-4AE9-9196-EC77B30BC1D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0CAA111-80C9-4AE9-9196-EC77B30BC1D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0CAA111-80C9-4AE9-9196-EC77B30BC1D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4998A01-E8EA-4087-A643-160A8A231454}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4998A01-E8EA-4087-A643-160A8A231454}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4998A01-E8EA-4087-A643-160A8A231454}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4998A01-E8EA-4087-A643-160A8A231454}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76183195-AC5A-4656-B6B7-657030CC8070}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76183195-AC5A-4656-B6B7-657030CC8070}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76183195-AC5A-4656-B6B7-657030CC8070}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76183195-AC5A-4656-B6B7-657030CC8070}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {24A8EE3B-1018-46CF-8998-0CE0EB2B9F5E}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B0CAA111-80C9-4AE9-9196-EC77B30BC1D7} = {5CE96D4B-69BF-4836-BDA7-AD5FCBE26A8F}
+		{C083C6FB-3B77-4658-9C47-66D5B5D12778} = {5CE96D4B-69BF-4836-BDA7-AD5FCBE26A8F}
+		{DE50074A-BC96-43A4-9D23-A815B5A4B9A8} = {5CE96D4B-69BF-4836-BDA7-AD5FCBE26A8F}
+		{92F7299B-D150-4E43-AA03-A24697321598} = {5CE96D4B-69BF-4836-BDA7-AD5FCBE26A8F}
+		{76183195-AC5A-4656-B6B7-657030CC8070} = {D370FCB3-D278-4AAF-9110-D51D94391152}
+		{D4998A01-E8EA-4087-A643-160A8A231454} = {D370FCB3-D278-4AAF-9110-D51D94391152}
 	EndGlobalSection
 EndGlobal

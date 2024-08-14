@@ -4,7 +4,7 @@ using PdfGenerator.Core.Application.DTOs;
 using PdfGenerator.Core.Application.UseCases;
 using PdfGenerator.Core.Domain.Interfaces;
 
-namespace PdfGenerator.Tests.PdfGenerator.Core.Application.Interfaces.Tests;
+namespace PdfGenerator.Core.Application.Tests.UseCases;
 
 public class GeneratePdfUseCaseTests
 {
@@ -18,19 +18,19 @@ public class GeneratePdfUseCaseTests
     }
 
     [Fact]
-    public async Task Handle_ShouldReturnPdfContent_WhenHtmlContentIsValid()
+    public async Task Handle_ShouldReturnPdfContent()
     {
-        //arrange
-        var htmlContent = "<html><body>Conteúdo de teste</body></html>";
+        // Arrange
+        const string htmlContent = "<html><body>Conteï¿½do de teste</body></html>";
         var pdfContent = new byte[] { 1, 2, 3 };
-        var request = new GeneratePdfRequest { HtmlContent = htmlContent };
+        var generatePdfRequest = new GeneratePdfRequest { HtmlContent = htmlContent, FileName = "arquivo" };
 
         _pdfGeneratorMock.Setup(x => x.GeneratePdfAsync(htmlContent)).ReturnsAsync(pdfContent);
 
-        //act
-        var result = await _generatePdfUseCase.Handle(request);
+        // Act
+        var handleResult = await _generatePdfUseCase.Handle(generatePdfRequest);
 
-        //assert
-        result.Should().BeEquivalentTo(pdfContent);
+        // Assert
+        handleResult.Should().BeEquivalentTo(pdfContent);
     }
 }

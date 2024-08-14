@@ -6,7 +6,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace PdfGenerator.Infrastructure.Adapters;
 
 [ExcludeFromCodeCoverage]
-public class PuppeteerAdapter : IPdfGenerator
+public class PdfAdapter : IPdfGenerator
 {    
     public async Task<byte[]> GeneratePdfAsync(string htmlContent)
     {

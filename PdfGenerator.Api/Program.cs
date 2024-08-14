@@ -15,10 +15,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddFluentValidationAutoValidation();
 
-builder.Services.AddSingleton<IPdfGenerator, PuppeteerAdapter>();
+builder.Services.AddSingleton<IPdfGenerator, PdfAdapter>();
+builder.Services.AddScoped<IZipGenerator, ZipAdapter>();
 builder.Services.AddTransient<IValidator<GeneratePdfRequest>, GeneratePdfRequestValidator>();
+builder.Services.AddTransient<IValidator<GenerateZipRequest>, GenerateZipRequestValidator>();
 builder.Services.AddScoped<IGeneratePdfUseCase, GeneratePdfUseCase>();
-builder.Services.AddSingleton<IMemoryCache, MemoryCache>();
+builder.Services.AddScoped<IGenerateZipUseCase, GenerateZipUseCase>();
 
 var app = builder.Build();
 
