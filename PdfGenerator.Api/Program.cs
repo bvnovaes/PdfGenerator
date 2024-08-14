@@ -1,6 +1,5 @@
 using FluentValidation;
 using FluentValidation.AspNetCore;
-using Microsoft.Extensions.Caching.Memory;
 using PdfGenerator.Core.Application.DTOs;
 using PdfGenerator.Core.Application.Interfaces;
 using PdfGenerator.Core.Application.UseCases;
@@ -28,6 +27,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseDeveloperExceptionPage();
 }
 
 app.UseExceptionHandler("/error");

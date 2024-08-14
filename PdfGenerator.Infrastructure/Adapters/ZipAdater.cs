@@ -9,19 +9,17 @@ public class ZipAdapter : IZipGenerator
 {
     public async Task<byte[]> GenerateZipAsync(IEnumerable<Tuple<string, byte[]>> pdfContents)
     {
-        using (var memoryStream = new MemoryStream())
+        using var memoryStream = new MemoryStream();
+        using (var archive = new ZipArchive(memoryStream, ZipArchiveMode.Create, true))
         {
-            using (var archive = new ZipArchive(memoryStream, ZipArchiveMode.Create, true))
+            foreach (var pdfContent in pdfContents)
             {
-                foreach (var pdfContent in pdfContents)
-                {
-                    var zipEntry = archive.CreateEntry($"{pdfContent.Item1}.pdf", CompressionLevel.Fastest);
-                    await using var zipStream = zipEntry.Open();
-                    await zipStream.WriteAsync(pdfContent.Item2);
-                }
+                var zipEntry = archive.CreateEntry($"{pdfContent.Item1}.pdf", CompressionLevel.Fastest);
+                await using var zipStream = zipEntry.Open();
+                await zipStream.WriteAsync(pdfContent.Item2);
             }
-
-            return memoryStream.ToArray();
         }
+
+        return memoryStream.ToArray();
     }
 }
