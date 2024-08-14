@@ -29,13 +29,13 @@ public class GenerateZipUseCaseTests
         var pdfContent = new byte[] { 1, 2, 3 };
         var zipContent = new byte[] { 4, 5, 6 };
         var generatePdfRequests = new List<GeneratePdfRequest>();
-        var pdfContents = new Dictionary<string, byte[]>();
+        var pdfContents = new List<Tuple<string, byte[]>>();
 
         for (var i = 1; i <= 3; i++)
         {
             var generatePdfRequest = new GeneratePdfRequest { HtmlContent = htmlContent, FileName = $"{fileName}_{i}" };
             generatePdfRequests.Add(generatePdfRequest);
-            pdfContents.Add(generatePdfRequest.FileName, pdfContent);
+            pdfContents.Add(new Tuple<string, byte[]>(generatePdfRequest.FileName, pdfContent));
         }
 
         var generateZipRequest = new GenerateZipRequest { PdfRequests = generatePdfRequests };

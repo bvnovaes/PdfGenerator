@@ -2,5 +2,5 @@
 
 public interface IZipGenerator
 {
-    Task<byte[]> GenerateZipAsync(IDictionary<string, byte[]> pdfContents);
+    Task<byte[]> GenerateZipAsync(IEnumerable<Tuple<string, byte[]>> pdfContents);
 }

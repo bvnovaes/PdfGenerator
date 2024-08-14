@@ -7,7 +7,7 @@ namespace PdfGenerator.Infrastructure.Adapters;
 [ExcludeFromCodeCoverage]
 public class ZipAdapter : IZipGenerator
 {
-    public async Task<byte[]> GenerateZipAsync(IDictionary<string, byte[]> pdfContents)
+    public async Task<byte[]> GenerateZipAsync(IEnumerable<Tuple<string, byte[]>> pdfContents)
     {
         using (var memoryStream = new MemoryStream())
         {
@@ -15,9 +15,9 @@ public class ZipAdapter : IZipGenerator
             {
                 foreach (var pdfContent in pdfContents)
                 {
-                    var zipEntry = archive.CreateEntry($"{pdfContent.Key}.pdf", CompressionLevel.Fastest);
+                    var zipEntry = archive.CreateEntry($"{pdfContent.Item1}.pdf", CompressionLevel.Fastest);
                     await using var zipStream = zipEntry.Open();
-                    await zipStream.WriteAsync(pdfContent.Value);
+                    await zipStream.WriteAsync(pdfContent.Item2);
                 }
             }
 
